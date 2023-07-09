@@ -5,6 +5,10 @@ const handlebars = require('express-handlebars');
 const { log } = require('console');
 
 const route = require('./routers');
+const db = require('./config/db');
+
+// Connect to DB
+db.connect()
 
 const app = express();
 const port = 3001;
@@ -27,7 +31,7 @@ app.engine(
     handlebars.engine({ defaultLayout: 'main', extname: '.hbs' }),
 );
 app.set('view engine', 'hbs');
-app.set('views', path.join(__dirname, 'resources/views'));
+app.set('views', path.join(__dirname, 'resources', 'views'));
 
 // Routes init
 route(app);
@@ -58,5 +62,5 @@ route(app);
 // })
 
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
+    console.log(`App app listening on port ${port}`);
 });
