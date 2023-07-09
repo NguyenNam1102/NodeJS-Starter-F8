@@ -1,5 +1,5 @@
-const newsRouter = require('./news')
-const siteRouter = require('./site')
+const newsRouter = require('./news');
+const siteRouter = require('./site');
 
 function route(app) {
     // app.get('/', (req, res) => {
@@ -12,10 +12,9 @@ function route(app) {
     //     res.render('news')
     // })
 
-    app.use('/news', newsRouter)
+    app.use('/news', newsRouter);
 
-    app.use('/', siteRouter)
-
+    app.use('/', siteRouter);
 
     // app.get('/search', (req, res) => {
     //     // Query parameters (tham số truy vấn)
@@ -33,4 +32,4 @@ function route(app) {
     // })
 }
 
-module.exports = route
+module.exports = route;
