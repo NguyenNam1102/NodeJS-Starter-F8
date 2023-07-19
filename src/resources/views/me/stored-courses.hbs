@@ -14,7 +14,7 @@
                 <option value="">-- Chọn hành động --</option>
                 <option value="delete">Xóa</option>
             </select>
-            <button class=" btn btn-primary check-all-submit-btn btn-sm ml-2 disabled">Thực hiện</button>
+            <button class=" btn btn-primary check-all-submit-btn btn-sm ml-2" disabled>Thực hiện</button>
         </div>
     </div>
     <table class="table mt-4">
@@ -32,7 +32,7 @@
             <tr>
                 <td>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="courseIds[]" value="" id="{{this._id}}">
+                        <input class="form-check-input" type="checkbox" name="courseIds[]" value="{{this._id}}">
                     </div>
                 </td>
                 <th scope="row">{{sum @index 1}}</th>
@@ -87,7 +87,8 @@
     document.addEventListener('DOMContentLoaded', function () {
         let courseId
         let deleteForm = document.forms['delete-course-form']
-        const containerForm = document.forms['container-form']
+        // const containerForm = document.forms['container-form']
+        const containerForm = $('form[name="container-form"]')
         const btnDeleteCourse = document.getElementById('btn-delete-course')
         const checkboxAll = $('#checkbox-all')
         const courseItemCheckbox = $('input[name="courseIds[]"]')
@@ -117,21 +118,13 @@
             renderCheckAllSubmitBtn()
         })
 
-        // Check all submit button clicked
-        checkAllSubmitBtn.on('submit', function (e) {
-            const isSubmitTable = !$(this).hasClass('disabled')
-            if (!isSubmitTable) {
-                e.preventDefault()
-            }
-        })
-
         // Re-render check all submit button
         function renderCheckAllSubmitBtn() {
             const checkedCount = $('input[name="courseIds[]"]:checked').length
             if (checkedCount) {
-                checkAllSubmitBtn.removeClass('disabled')
+                checkAllSubmitBtn.removeAttr('disabled')
             } else {
-                checkAllSubmitBtn.addClass('disabled')
+                checkAllSubmitBtn.attr('disabled', true)
             }
         }
     })
