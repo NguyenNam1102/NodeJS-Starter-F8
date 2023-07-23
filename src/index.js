@@ -25,6 +25,24 @@ app.use(express.json());
 
 app.use(methodOverride('_method'))
 
+// Test Middleware
+// app.get('/middleware',
+//     function (req, res, next) {
+//         if (['vip'].includes(req.query.ticket)) {
+//             req.face = 'Gach gach gach!!!'
+//             return next()
+//         }
+//         res.status(403).json({
+//             message: 'Errorrrrrrrrrr'
+//         })
+//     },
+//     function (req, res, next) {
+//         res.json({
+//             message: 'Helloooooooooo',
+//             face: req.face
+//         })
+//     })
+
 // HTTP logger
 app.use(morgan('combined'));
 
